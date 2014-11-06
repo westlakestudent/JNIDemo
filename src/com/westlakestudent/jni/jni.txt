@@ -1,0 +1,38 @@
+#include <string.h>
+#include <jni.h>
+
+jstring Java_com_westlakestudent_jni_MainActivity_fromjni( JNIEnv* env,jobject thiz )
+{
+    return (*env)->NewStringUTF(env, "Hello from JNI SUCCESSFULLY!  ");
+}
+
+
+以上是hello-jni.c文件
+
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE    := hello-jni
+LOCAL_SRC_FILES := hello-jni.c
+
+include $(BUILD_SHARED_LIBRARY)
+
+
+以上为Android.mk文件
+
+以上两个文件放在jni文件夹中
+
+将jni放入JNI文件夹，然后cmd进入到JNI文件夹调用$NDK/ndk-build
+
+NDK=/cygdrive/D/Java/android-ndk-r9c
+
+
+在cygwin的 home\<你的用户名>\.bash_profile 文件中最后添加：（可用notepad++或者UltraEdit打开）
+　　NDK=/cygdrive/<你的盘符>/<android ndk 目录> export NDK，
+　　如我的为 NDK=/cygdrive/C/Android/android-ndk-r7 export NDK
+　　注："NDK"这个名字随便起，以后经常用别太长
+② 验证
+重启cygwin，输入：cd $NDK
+可进入ndk对应目录说明设置OK。
